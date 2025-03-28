@@ -8,8 +8,8 @@ const commands = [
 ];
 
 // new changes
-const TOKEN = 'MTM0NzA5NDE2NzA0NTY3MzAyMg.GqXCfu.wbcINk5NwqWqL8BYb1uMaLqHJ23NXsSv9bLT5s'; 
-const CLIENT_ID = '1347094167045673022';
+const TOKEN = 'YOUR_BOT_TOKEN'; 
+const CLIENT_ID = 'YOUR_CLIENT_ID';
 
 const rest = new REST({ version: '10' }).setToken(TOKEN);
 
