@@ -1,6 +1,6 @@
+require('dotenv').config()
 const { Client, Events, GatewayIntentBits } = require('discord.js');
-const fetch = require("node-fetch");
-
+const { askGemini } = require('./gemini');
 
 
 const client = new Client({
@@ -10,12 +10,14 @@ const client = new Client({
         GatewayIntentBits.MessageContent,
         GatewayIntentBits.GuildMembers] });
 
-client.on("messageCreate", async (message)=>{
+client.on("messageCreate",async (message)=>{
     if(message.author.bot){
         return;
     }
 
-    if(message.content.startsWith("create")){
+    //console.log(message.content);
+
+    /*if(message.content.startsWith("create")){
         const url=message.content.split("create")[1].trim();
         if(!url){
             return message.reply({
@@ -37,12 +39,35 @@ client.on("messageCreate", async (message)=>{
             return message.reply({ content: "Failed to reach the API." });
         }
 
+    }*/
+
+
+        message.reply({
+            content: `Hi from bot 👋
+        
+        1.To ask Gemini something, just type your question like:
+        **ask gemini What are LLM's?**
+        
+        Gemini will respond with an answer to your query. Feel free to ask anything!`
+        });        
+
+    const content = message.content.trim();
+
+    if (content.startsWith("ask gemini ")) {
+        const prompt = content.slice(11).trim();
+        if (!prompt) {
+            return message.reply("Please provide a question or prompt.");
+        }
+
+        try {
+            const ans = await askGemini(prompt);
+            return message.reply(ans);
+        } catch (err) {
+            console.error("Bot error:", err);
+            return message.reply("There was an error talking to Gemini.");
+        }
     }
 
-
-    message.reply({
-        content:"Hi from bot"
-    });
 })
 
 client.on("interactionCreate", (interaction)=>{
@@ -52,4 +77,4 @@ client.on("interactionCreate", (interaction)=>{
 })
 
 
-client.login("MTM0NzA5NDE2NzA0NTY3MzAyMg.GqXCfu.wbcINk5NwqWqL8BYb1uMaLqHJ23NXsSv9bLT5s");
+client.login(process.env.TOKEN);
