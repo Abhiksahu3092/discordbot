@@ -42,14 +42,7 @@ client.on("messageCreate",async (message)=>{
     }*/
 
 
-        message.reply({
-            content: `Hi from bot 👋
-        
-        1.To ask Gemini something, just type your question like:
-        **ask gemini What are LLM's?**
-        
-        Gemini will respond with an answer to your query. Feel free to ask anything!`
-        });        
+                
 
     const content = message.content.trim();
 
@@ -66,6 +59,16 @@ client.on("messageCreate",async (message)=>{
             console.error("Bot error:", err);
             return message.reply("There was an error talking to Gemini.");
         }
+    }
+    else{
+        message.reply({
+            content: `Hi from bot 👋
+        
+        1.To ask Gemini something, just type your question like:
+        **ask gemini What are LLM's?**
+        
+        Gemini will respond with an answer to your query. Feel free to ask anything!`
+        });
     }
 
 })
