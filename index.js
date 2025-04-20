@@ -46,8 +46,8 @@ client.on("messageCreate",async (message)=>{
 
     const content = message.content.trim();
 
-    if (content.startsWith("ask gemini ")) {
-        const prompt = content.slice(11).trim();
+    if (content.startsWith("@gemini ")) {
+        const prompt = content.slice(8).trim();
         if (!prompt) {
             return message.reply("Please provide a question or prompt.");
         }
@@ -65,7 +65,7 @@ client.on("messageCreate",async (message)=>{
             content: `Hi from bot 👋
         
         1.To ask Gemini something, just type your question like:
-        **ask gemini What are LLM's?**
+        **@gemini What are LLM's?**
         
         Gemini will respond with an answer to your query. Feel free to ask anything!`
         });
