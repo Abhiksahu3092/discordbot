@@ -65,7 +65,7 @@ client.on("messageCreate",async (message)=>{
             content: `Hi from bot 👋
         
         1.To ask Gemini something, just type your question like:
-        **ask gemini What are LLM's?**
+        **Ask gemini "your prompt"**
         
         Gemini will respond with an answer to your query. Feel free to ask anything!`
         });
